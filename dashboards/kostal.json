@@ -1,0 +1,1010 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 2,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 8,
+          "x": 0,
+          "y": 0
+        },
+        "id": 4,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "postgres",
+              "uid": "pW2323GVk"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT *\nFROM pv_generator\nWHERE\n  $__timeFilter(time)\nORDER BY time desc\nLIMIT 1",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "from_battery"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "day_stats",
+            "timeColumn": "\"time\"",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "PV Generator",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "pv1_current": true,
+                "pv1_power": true,
+                "pv1_voltage": true,
+                "pv2_current": true,
+                "pv2_power": true,
+                "pv2_voltage": true,
+                "pv3_current": true,
+                "pv3_power": true,
+                "pv3_voltage": true,
+                "pv_current": false,
+                "pv_power": false,
+                "pv_voltage": false,
+                "time": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "pv1_current": "",
+                "pv1_power": "",
+                "pv1_voltage": "",
+                "pv_current": "Current",
+                "pv_power": "Power",
+                "pv_voltage": "Voltage",
+                "time": ""
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 8,
+          "x": 9,
+          "y": 0
+        },
+        "id": 11,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "postgres",
+              "uid": "pW2323GVk"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT *\nFROM inverter\nWHERE\n  $__timeFilter(time)\nORDER BY time desc\nLIMIT 1",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "from_battery"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "day_stats",
+            "timeColumn": "\"time\"",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Inverter",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "l1_current": true,
+                "l1_power": true,
+                "l1_voltage": true,
+                "l2_current": true,
+                "l2_power": true,
+                "l2_voltage": true,
+                "l3_current": true,
+                "l3_power": true,
+                "l3_voltage": true,
+                "time": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "cos_phi": "Cos Phi",
+                "grid_frequency": "Grid Frequency",
+                "output_power": "Output Power"
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 13,
+          "w": 3,
+          "x": 18,
+          "y": 0
+        },
+        "id": 16,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "postgres",
+              "uid": "pW2323GVk"
+            },
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT *\nFROM home_consumption\nWHERE\n  $__timeFilter(time)\nORDER BY time desc\nLIMIT 1",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "from_battery"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "day_stats",
+            "timeColumn": "\"time\"",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Home Consumption",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "home_own_p": true,
+                "home_p": true
+              },
+              "indexByName": {
+                "from_battery": 4,
+                "from_grid": 3,
+                "from_pv": 2,
+                "home_own_p": 6,
+                "home_p": 5,
+                "time": 0,
+                "total": 1
+              },
+              "renameByName": {
+                "from_battery": "From Battery",
+                "from_grid": "From Grid",
+                "from_pv": "From PV",
+                "total": "Total"
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 13,
+          "w": 3,
+          "x": 21,
+          "y": 0
+        },
+        "id": 18,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "postgres",
+              "uid": "pW2323GVk"
+            },
+            "format": "table",
+            "group": [
+              {
+                "params": [
+                  "$__interval",
+                  "none"
+                ],
+                "type": "time"
+              }
+            ],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT inverter.output_power - home_consumption.total as grid\nFROM inverter\nJOIN home_consumption ON inverter.time = home_consumption.time\nWHERE $__timeFilter(inverter.time)\nORDER BY inverter.time desc\nLIMIT 1",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "output_power"
+                  ],
+                  "type": "column"
+                },
+                {
+                  "params": [
+                    "last"
+                  ],
+                  "type": "aggregate"
+                },
+                {
+                  "params": [
+                    "output_power"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "table": "inverter",
+            "timeColumn": "\"time\"",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "Grid",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Dashboard --"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 2,
+          "x": 0,
+          "y": 4
+        },
+        "id": 9,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "-- Dashboard --"
+            },
+            "panelId": 4,
+            "refId": "A"
+          }
+        ],
+        "title": "DC Input 1",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "pv1_current": false,
+                "pv1_power": false,
+                "pv2_current": true,
+                "pv2_power": true,
+                "pv2_voltage": true,
+                "pv3_current": true,
+                "pv3_power": true,
+                "pv3_voltage": true,
+                "pv_current": true,
+                "pv_power": true,
+                "pv_voltage": true,
+                "time": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "pv1_current": "Current",
+                "pv1_power": "Power",
+                "pv1_voltage": "Voltage",
+                "time": ""
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Dashboard --"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 2,
+          "x": 3,
+          "y": 4
+        },
+        "id": 7,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "-- Dashboard --"
+            },
+            "panelId": 4,
+            "refId": "A"
+          }
+        ],
+        "title": "DC Input 2",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "pv1_current": true,
+                "pv1_power": true,
+                "pv1_voltage": true,
+                "pv2_current": false,
+                "pv2_power": false,
+                "pv2_voltage": false,
+                "pv3_current": true,
+                "pv3_power": true,
+                "pv3_voltage": true,
+                "pv_current": true,
+                "pv_power": true,
+                "pv_voltage": true,
+                "time": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "pv1_current": "",
+                "pv1_power": "",
+                "pv1_voltage": "",
+                "pv2_current": "Current",
+                "pv2_power": "Power",
+                "pv2_voltage": "Voltage",
+                "time": ""
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Dashboard --"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 2,
+          "x": 6,
+          "y": 4
+        },
+        "id": 8,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "-- Dashboard --"
+            },
+            "panelId": 4,
+            "refId": "A"
+          }
+        ],
+        "title": "DC Input 3",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "pv1_current": true,
+                "pv1_power": true,
+                "pv1_voltage": true,
+                "pv2_current": true,
+                "pv2_power": true,
+                "pv2_voltage": true,
+                "pv3_current": false,
+                "pv3_power": false,
+                "pv3_voltage": false,
+                "pv_current": true,
+                "pv_power": true,
+                "pv_voltage": true,
+                "time": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "pv1_current": "",
+                "pv1_power": "",
+                "pv1_voltage": "",
+                "pv3_current": "Current",
+                "pv3_power": "Power",
+                "pv3_voltage": "Voltage",
+                "time": ""
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Dashboard --"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 2,
+          "x": 9,
+          "y": 4
+        },
+        "id": 12,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "-- Dashboard --"
+            },
+            "panelId": 11,
+            "refId": "A"
+          }
+        ],
+        "title": "Phase 1",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "cos_phi": true,
+                "grid_frequency": true,
+                "l1_current": false,
+                "l1_power": false,
+                "l1_voltage": false,
+                "l2_current": true,
+                "l2_power": true,
+                "l2_voltage": true,
+                "l3_current": true,
+                "l3_power": true,
+                "l3_voltage": true,
+                "output_power": true,
+                "time": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "cos_phi": "",
+                "grid_frequency": "",
+                "l1_current": "Current",
+                "l1_power": "Power",
+                "l1_voltage": "Voltage",
+                "output_power": ""
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Dashboard --"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 2,
+          "x": 12,
+          "y": 4
+        },
+        "id": 13,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "-- Dashboard --"
+            },
+            "panelId": 11,
+            "refId": "A"
+          }
+        ],
+        "title": "Phase 2",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "cos_phi": true,
+                "grid_frequency": true,
+                "l1_current": true,
+                "l1_power": true,
+                "l1_voltage": true,
+                "l2_current": false,
+                "l2_power": false,
+                "l2_voltage": false,
+                "l3_current": true,
+                "l3_power": true,
+                "l3_voltage": true,
+                "output_power": true,
+                "time": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "cos_phi": "",
+                "grid_frequency": "",
+                "l1_current": "",
+                "l1_power": "",
+                "l1_voltage": "",
+                "l2_current": "Current",
+                "l2_power": "Power",
+                "l2_voltage": "Voltage",
+                "output_power": ""
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Dashboard --"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 2,
+          "x": 15,
+          "y": 4
+        },
+        "id": 14,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "-- Dashboard --"
+            },
+            "panelId": 11,
+            "refId": "A"
+          }
+        ],
+        "title": "Phase 3",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "cos_phi": true,
+                "grid_frequency": true,
+                "l1_current": true,
+                "l1_power": true,
+                "l1_voltage": true,
+                "l2_current": true,
+                "l2_power": true,
+                "l2_voltage": true,
+                "l3_current": false,
+                "l3_power": false,
+                "l3_voltage": false,
+                "output_power": true,
+                "time": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "cos_phi": "",
+                "grid_frequency": "",
+                "l1_current": "",
+                "l1_power": "",
+                "l1_voltage": "",
+                "l2_current": "",
+                "l2_power": "",
+                "l2_voltage": "",
+                "l3_current": "Current",
+                "l3_power": "Power",
+                "l3_voltage": "Voltage",
+                "output_power": ""
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 34,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Kostal",
+    "uid": "p86Pyi74z",
+    "version": 3,
+    "weekStart": ""
+  }
