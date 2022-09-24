@@ -1,6 +1,4 @@
 import psycopg2
-from psycopg2 import pool
-from psycopg2.extras import NamedTupleCursor
 import logging
 from functools import wraps
 import configparser
@@ -11,20 +9,13 @@ logger = logging.getLogger(__name__)
 
 config = configparser.ConfigParser()
 config.read("config.ini")
-connection_pool = psycopg2.pool.SimpleConnectionPool(config['postgresql']['min_conn'], 
-                                                        config['postgresql']['max_conn'], 
-                                                        user=config['postgresql']['user'],
-                                                        password=config['postgresql']['password'],
-                                                        host=config['postgresql']['host'],
-                                                        port=config['postgresql']['port'],
-                                                        database=config['postgresql']['database'])
-
-
-def test_log():
-    logger.info("test info")
-    logger.error("test error")
-    logger.warning("test warn")
-    logger.debug("test debug")
+connection_pool = psycopg2.pool.SimpleConnectionPool(config['db']['min_conn'], 
+                                                        config['db']['max_conn'], 
+                                                        user=config['db']['user'],
+                                                        password=config['db']['password'],
+                                                        host=config['db']['host'],
+                                                        port=config['db']['port'],
+                                                        database=config['db']['database'])
 
 def empty_tables():
     conn = connection_pool.getconn()       
@@ -64,6 +55,3 @@ def with_cursor(write=False):
             return result
         return with_cursor_wrapper
     return with_cursor_decorator
-
-if __name__ == "__main__":
-    pass #empty_tables()

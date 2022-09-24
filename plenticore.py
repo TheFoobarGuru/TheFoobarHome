@@ -1,15 +1,15 @@
-from re import S
-from aiohttp import ClientSession
 import asyncio
-from pykoplenti import ApiClient
+import configparser
 import db
 import logging
+from aiohttp import ClientSession
 from datetime import datetime, timezone
-
-HOST = "192.168.1.107"
-PWD = "hVgfJIk28j9xD2EpiM13BhzJLiV9ve"
+from pykoplenti import ApiClient
+from re import S
 
 logger = logging.getLogger(__name__)
+config = configparser.ConfigParser()
+config.read("config.ini")
 
 class PvGenerator:
 
@@ -290,8 +290,8 @@ class StatisticsData:
 
 async def async_main(read_only=False):
     async with ClientSession() as session:
-        client = ApiClient(session, HOST)
-        await client.login(PWD)
+        client = ApiClient(session, config['plenticore']['host'])
+        await client.login(config['plenticore']['password'])
 
         read_time = datetime.now(timezone.utc)
         logger.info("Reading data from the Inverter")

@@ -2,7 +2,6 @@ import db
 import plenticore
 import asyncio
 import logging
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from logging.handlers import TimedRotatingFileHandler
 
 READ_INTERVAL_SECONDS = 10
@@ -13,31 +12,21 @@ logger = logging.getLogger(__name__)
 def setup_logging():
     formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
-    handler = TimedRotatingFileHandler("logs/foobar_home.log", when="h", interval=1, backupCount=5)        
-    handler.setFormatter(formatter)
-    handler.setLevel(logging.DEBUG)
+    trf_handler = TimedRotatingFileHandler("logs/the_foobar_home.log", when="h", interval=1, backupCount=5)        
+    trf_handler.setFormatter(formatter)
+    trf_handler.setLevel(logging.DEBUG)
 
-    ch = logging.StreamHandler()
-    ch.setFormatter(formatter)
-    ch.setLevel(logging.INFO)    
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    stream_handler.setLevel(logging.INFO)    
 
     root_logger = logging.getLogger()
     root_logger.setLevel(logging.DEBUG)
-    root_logger.addHandler(handler)
-    root_logger.addHandler(ch)
-
-
-def main2():
-    setup_logging()
-    logger.info("test info")
-    logger.error("test error")
-    db.test_log()
-    logger.warning("test warn")
-    logger.debug("test debug")
+    root_logger.addHandler(trf_handler)
+    root_logger.addHandler(stream_handler)
 
 
 def main(*args, **kwargs):
-    setup_logging()
     try:
         asyncio.run(do_stuff_periodically())
     except (KeyboardInterrupt, SystemExit):
@@ -57,4 +46,5 @@ def handle_exit(*args):
 
 
 if __name__ == "__main__":
+    setup_logging()
     main()
