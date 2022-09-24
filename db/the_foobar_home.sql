@@ -1,0 +1,1 @@
+CREATE DATABASE the_foobar_home;

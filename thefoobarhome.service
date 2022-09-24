@@ -1,0 +1,14 @@
+[Unit]
+Description=TheFoobarHome service
+After=postgresql.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+ExecStart=/usr/bin/python3 /home/pi/TheFoobarHome/main.py
+
+[Install]
+WantedBy=multi-user.target
