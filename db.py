@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2 import pool
 import logging
 from functools import wraps
 import configparser
