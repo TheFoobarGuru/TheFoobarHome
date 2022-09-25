@@ -1,2 +1,2 @@
 pykoplenti
-psycopg2-binary
+psycopg2
