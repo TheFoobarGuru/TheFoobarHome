@@ -8,7 +8,7 @@ This project has been tested with Python 3.9.2 and TimeScaleDB 14.
 
 1. Install TimescaleDB by following this [procedure](db/README.md).
 
-2. Install the rerired packages.
+2. Install the required packages.
 ```bash
 sudo apt install python3-pip python3-dev libpq-dev python3-venv
 ```
