@@ -105,7 +105,7 @@ The license is [WTFPL](https://en.wikipedia.org/wiki/WTFPL).
        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
                 Version 2, December 2004
 
-Copyright (C) 2021- Ivan Enderlin <ivan@mnt.io>
+Copyright (C) 2022- Denis Moret
 
 Everyone is permitted to copy and distribute verbatim or modified
 copies of this license document, and changing it is allowed as long
